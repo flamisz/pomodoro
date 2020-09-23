@@ -7,9 +7,10 @@ use LaravelZero\Framework\Commands\Command;
 
 class Start extends Command
 {
-    const DEFAULT_POMODORO_MIN = 5;
-    const DEFAULT_BREAK_MIN = 2;
+    const DEFAULT_POMODORO_MIN = 25;
+    const DEFAULT_BREAK_MIN = 5;
     const DEFAULT_POMODORO_COUNT = 4;
+    const DEFAULT_LONG_BREAK = 30;
 
     /**
      * The signature of the command.
@@ -35,24 +36,33 @@ class Start extends Command
         $pomodoroMin = self::DEFAULT_POMODORO_MIN;
         $pomodoroCount = self::DEFAULT_POMODORO_COUNT;
         $pomodoroBreak = self::DEFAULT_BREAK_MIN;
+        $longBreak = self::DEFAULT_LONG_BREAK;
 
         $this->info('Pomodoro started at: ' . now());
 
-        collect(range(1, $pomodoroCount, 1))->each(function ($item) use ($pomodoroMin, $pomodoroBreak, $pomodoroCount) {
+        collect(range(1, $pomodoroCount, 1))->each(function ($item) use ($pomodoroMin, $pomodoroBreak, $pomodoroCount, $longBreak) {
+            $this->info("\n${item}. pomodoro 💻");
+
             $this->bar($pomodoroMin);
-            $message = "{$item}. pomodoro has finished. Take a {$pomodoroBreak} minute break ☕️";
+
+            $break = $item < $pomodoroCount ? $pomodoroBreak : $longBreak;
+
+            $message = "{$item}. pomodoro has finished. Take a {$break} minute break";
             $this->info("\n{$message}");
             $this->notify('Pomodoro', "\n{$message}", 'icon.png');
 
             if ($item < $pomodoroCount) {
+                $this->info("☕️");
+
                 $this->bar($pomodoroBreak);
+
                 $message = "{$item}. break has finished. Let's get back to work 💻";
                 $this->comment("\n{$message}");
                 $this->notify('Pomodoro', "\n{$message}", 'icon.png');
             }
         });
 
-        $this->info('Pomodoro finished at: ' . now());
+        $this->info('\nPomodoro finished at: ' . now());
     }
 
     protected function bar(int $range)
@@ -64,7 +74,7 @@ class Start extends Command
         $bar->start();
 
         collect(range(1, $range, 1))->each(function () use ($bar) {
-            sleep(1);
+            sleep(60);
             $bar->advance();
         });
 
