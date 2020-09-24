@@ -17,7 +17,10 @@ class Start extends Command
      *
      * @var string
      */
-    protected $signature = 'start';
+    protected $signature = 'start
+                            {--min= : pomodoro timer in minutes (default: 25)}
+                            {--break= : break between rounds (default: 5)}
+                            {--rounds= : how many rounds (deafult: 4)}';
 
     /**
      * The description of the command.
@@ -33,9 +36,9 @@ class Start extends Command
      */
     public function handle()
     {
-        $pomodoroMin = self::DEFAULT_POMODORO_MIN;
-        $pomodoroCount = self::DEFAULT_POMODORO_COUNT;
-        $pomodoroBreak = self::DEFAULT_BREAK_MIN;
+        $pomodoroMin = $this->option('min') ?: self::DEFAULT_POMODORO_MIN;
+        $pomodoroCount = $this->option('break') ?: self::DEFAULT_POMODORO_COUNT;
+        $pomodoroBreak = $this->option('rounds') ?: self::DEFAULT_BREAK_MIN;
         $longBreak = self::DEFAULT_LONG_BREAK;
 
         $this->info('Pomodoro started at: ' . now());
@@ -62,7 +65,7 @@ class Start extends Command
             }
         });
 
-        $this->info('\nPomodoro finished at: ' . now());
+        $this->info("\nPomodoro finished at: " . now());
     }
 
     protected function bar(int $range)

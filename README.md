@@ -13,7 +13,20 @@ There are six steps in the original technique:
 
 ## How to use it
 
-This is a php app. Clone the repo...
+This is a php app. Clone the repo and type: `php pomodoro start`.
+Other way to download the `builds/pomodoro` file and run it: `./pomodoro start`.
+
+## Options
+
+By default, there are 4 rounds, each 25 minutes and 5 minutes break between the rounds. You can customize these values with arguments:
+```
+--min[=MIN]        pomodoro timer in minutes (default: 25)
+--break[=BREAK]    break between rounds (default: 5)
+--rounds[=ROUNDS]  how many rounds (deafult: 4)
+```
+
+Run like this:
+`php pomodoro start --rounds=3 --min=20 --break=4` or `./pomodoro start --rounds=3 --min=20 --break=4`
 
 ## License
 
