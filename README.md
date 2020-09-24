@@ -30,4 +30,4 @@ Run like this:
 
 ## License
 
-Laravel Zero is an open-source software licensed under the [MIT license](https://github.com/flamisz/pomodoro/blob/master/LICENSE).
+Pomodoro is an open-source software licensed under the [MIT license](https://github.com/flamisz/pomodoro/blob/master/LICENSE).
