@@ -28,6 +28,10 @@ By default, there are 4 rounds, each 25 minutes and 5 minutes break between the 
 Run like this:
 `php pomodoro start --rounds=3 --min=20 --break=4` or `./pomodoro start --rounds=3 --min=20 --break=4`
 
+## Note for macos terminal
+
+The app has os native notifications. If you want to make it "nicer" on macos, install `terminal-notifier`. You can do it with brew: `brew install terminal-notifier`.
+
 ## License
 
 Pomodoro is an open-source software licensed under the [MIT license](https://github.com/flamisz/pomodoro/blob/master/LICENSE).
