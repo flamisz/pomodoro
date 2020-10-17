@@ -13,7 +13,7 @@ There are six steps in the original technique:
 
 ## How to use it
 
-This is a php app. Clone the repo and type: `php pomodoro start`.
+This is a php app. Clone the repo, `composer install` and type: `php pomodoro start`.
 Other way to download the `builds/pomodoro` file and run it: `./pomodoro start`.
 
 ## Options
